@@ -10,8 +10,7 @@ function initializeRoutes(server) {
 
 function initializeServerConnection(server, options) {
 	server.connection({
-		host: options.serverHost,
-		port: options.serverPort
+		port: options.port
 	});
 }
 
@@ -24,7 +23,7 @@ function FrontendServer(options) {
 
 	api.start = function start() {
 		server.start();
-		console.log('Frontend listening on port ' + options.serverPort);
+		console.log('Frontend listening on port ' + options.port);
 	};
 
 	return api;
