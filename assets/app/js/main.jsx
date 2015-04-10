@@ -5,5 +5,5 @@ import Lifecycle from '../../../components/lifecycle.jsx';
 
 (function() {
 	var mountNode = document.getElementById('app');
-	React.render(<Lifecycle />, mountNode);
+	React.render(<HelloWorld />, mountNode);
 })();

@@ -1,13 +1,11 @@
-var Path = require('path');
 var gulp = require('gulp');
-var source = require("vinyl-source-stream");
+var source = require('vinyl-source-stream');
 var rename = require('gulp-rename');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var es6ify = require('es6ify');
-var reactFile = './node_modules/react/react.js';
 var reactify = require('reactify');
-es6ify.traceurOverrides = {experimental: true};
+// es6ify.traceurOverrides = {experimental: true};
 
 function rebundleScripts(bundler, bundleFiles) {
 	bundler
@@ -24,7 +22,7 @@ function rebundleScripts(bundler, bundleFiles) {
 // All tasks will be registered with gulp
 var tasks = {};
 
-// TODO: Looks like recompile may need to wrap the .on('update') listener as well
+// TODO: When recompile is false, this should be exiting when it finishes building. Why isn't it?
 tasks.buildScripts = function buildScripts(recompile) {
 	var bundleFiles = {
 		srcFile: './assets/app/js/main.jsx',
@@ -56,7 +54,7 @@ tasks.build = function build(recompile) {
 };
 
 // TODO: WTF Watchify, or something, causes app.js to be recompiled without removing the old one, leading to 15MB+ app.js bundle file ?!?!?!
-// TODO: Watchify keeps crapping out and stopping randomly. Is it due to errors? There are no console messages. S.O.S.
+// TODO: Watchify keeps crapping o0t and stopping randomly. Is it due to errors? Memory usage issues? Windows (probably)? There are no console messages. S.O.S.
 tasks.buildAndWatch = function buildAndWatch() {
 	var recompile = true;
 	tasks.build(recompile);
@@ -64,15 +62,14 @@ tasks.buildAndWatch = function buildAndWatch() {
 
 tasks.start = function start() {
 	var serverOptions = {
-		port: 8080
+		port: 9001
 	};
 	var server = require('./server.js')(serverOptions);
 	server.start();
 };
 
 tasks.dev = function dev() {
-	var recompile = true;
-	tasks.build(recompile);
+	tasks.buildAndWatch();
 	tasks.start();
 };
 

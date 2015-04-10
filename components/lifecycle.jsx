@@ -1,5 +1,7 @@
 import React from 'react';
 
+// ES6 Import/Export modules: http://www.sitepoint.com/understanding-es6-modules/
+
 export default React.createClass({
 	// [Setup] Invoked once, before component is mounted
 	getInitialState: function getInitialState() {
@@ -84,7 +86,7 @@ export default React.createClass({
 		return numOneOrTwo === 1 ? 'good' : 'bad';
 	},
 
-	doesNeedToUpdate: function doesNotNeedToUpdate() {
+	doesNeedToUpdate: function doesNeedToUpdate() {
 		return true;
 	},
 
