@@ -61,10 +61,9 @@ tasks.buildAndWatch = function buildAndWatch() {
 };
 
 tasks.start = function start() {
-	var serverOptions = {
+	var server = require('./server.js')({
 		port: 9001
-	};
-	var server = require('./server.js')(serverOptions);
+	});
 	server.start();
 };
 

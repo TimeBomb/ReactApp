@@ -1,6 +1,7 @@
 import React from 'react';
 import HelloWorld from '../../../components/helloWorld.jsx';
 import HelloName from '../../../components/helloName.jsx';
+import HelloPerson from '../../../components/helloPerson.jsx';
 import Lifecycle from '../../../components/lifecycle.jsx';
 
 (function() {

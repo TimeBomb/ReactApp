@@ -1,6 +1,8 @@
 import React from 'react';
 
 // ES6 Import/Export modules: http://www.sitepoint.com/understanding-es6-modules/
+// React routing examples: https://github.com/rackt/react-router-mega-demo
+// Async server-side component rendering: https://github.com/andreypopp/react-async
 
 export default React.createClass({
 	// [Setup] Invoked once, before component is mounted
