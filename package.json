@@ -1,0 +1,26 @@
+{
+  "name": "Frontend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "run.js",
+  "dependencies": {
+    "browserify": "^9.0.7",
+    "hapi": "^8.4.0",
+    "lodash": "^3.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.7",
+    "es6ify": "^1.6.0",
+    "gulp": "^3.8.11",
+    "gulp-rename": "^1.2.2",
+    "gulp-streamify": "0.0.5",
+    "reactify": "^1.1.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "TimeBomb",
+  "license": "GPL"
+}
