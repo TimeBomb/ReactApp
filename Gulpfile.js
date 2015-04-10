@@ -55,6 +55,7 @@ tasks.build = function build(recompile) {
 	tasks.buildScripts(recompile);
 };
 
+// TODO: WTF Watchify, or something, causes app.js to be recompiled without removing the old one, leading to 15MB+ app.js bundle file ?!?!?!
 // TODO: Watchify keeps crapping out and stopping randomly. Is it due to errors? There are no console messages. S.O.S.
 tasks.buildAndWatch = function buildAndWatch() {
 	var recompile = true;
