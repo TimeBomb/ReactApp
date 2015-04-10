@@ -19,6 +19,9 @@ export default React.createClass({
 		}
 	},
 
+	// Properties vs State: Properties are immutable, public, initialized on component creation, and validatable.
+	// State is private to the component only, and should be thought of as an internal dataset that affects the rendering of the component.
+
 	// [Mounting] Invoked once (only on the client), immediately after initial rendering occurs
 	// Good place to do any initializations
 	componentWillMount: function componentWillMount() {
