@@ -1,7 +1,8 @@
 import React from 'react';
-import Home from '../../../components/home/home.jsx';
+import HelloWorld from '../../../components/helloWorld.jsx';
+import HelloName from '../../../components/helloName.jsx';
 
 (function() {
 	var mountNode = document.getElementById('app');
-	React.render(<Home />, mountNode);
+	React.render(<HelloName />, mountNode);
 })();

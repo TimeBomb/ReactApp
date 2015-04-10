@@ -19,13 +19,12 @@ function rebundleScripts(bundler, bundleFiles) {
 		.pipe(source(bundleFiles.srcFile)) // Take source app file
 		.pipe(rename(bundleFiles.destFile)) // Set the bundle name
 	  	.pipe(gulp.dest(bundleFiles.destDir)); // Output bundle file to destination folder
-
-	console.log('I just built the script bundle:', bundleFiles.destDir + '/' + bundleFiles.destFile);
 }
 
 // All tasks will be registered with gulp
 var tasks = {};
 
+// TODO: Looks like recompile may need to wrap the .on('update') listener as well
 tasks.buildScripts = function buildScripts(recompile) {
 	var bundleFiles = {
 		srcFile: './assets/app/js/main.jsx',
@@ -39,7 +38,9 @@ tasks.buildScripts = function buildScripts(recompile) {
 		basedir: __dirname,
 		debug: true,
 		entries: bundleFiles.srcFile,
-		fullPaths: true
+		fullPaths: true,
+		cache: {},
+		packageCache: {},
 	});
 
 	if (recompile) {
@@ -52,6 +53,12 @@ tasks.build = function build(recompile) {
 	// TODO: SASS Compiling & Bundling
 	// TODO: Live reload (React - LiveReactload & SASS - LiveReload)
 	tasks.buildScripts(recompile);
+};
+
+// TODO: Watchify keeps crapping out and stopping randomly. Is it due to errors? There are no console messages. S.O.S.
+tasks.buildAndWatch = function buildAndWatch() {
+	var recompile = true;
+	tasks.build(recompile);
 };
 
 tasks.start = function start() {
