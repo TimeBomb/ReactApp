@@ -1,3 +1,6 @@
+/*jslint node: true */
+'use strict';
+
 var Path = require('path');
 var FS = require('fs');
 var routes = {};

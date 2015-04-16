@@ -1,18 +1,18 @@
+/*jslint node: true */
+'use strict';
+
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var rename = require('gulp-rename');
+var babelify = require('babelify');
 var browserify = require('browserify');
 var watchify = require('watchify');
-var es6ify = require('es6ify');
-var reactify = require('reactify');
+// var es6ify = require('es6ify');
+// var reactify = require('reactify');
 // es6ify.traceurOverrides = {experimental: true};
 
 function rebundleScripts(bundler, bundleFiles) {
 	bundler
-		.on('error', function(err) { console.error('[Task Build Scripts Error]', err); })
-		.on('update', function() { rebundleScripts(bundler, bundleFiles); })
-		.transform(reactify, {harmony: true}) // JSX -> JS
-		.transform(es6ify.configure(/.jsx/)) // ES6 -> ES5
 		.bundle() // Bundle() before we pipe anything
 		.pipe(source(bundleFiles.srcFile)) // Take source app file
 		.pipe(rename(bundleFiles.destFile)) // Set the bundle name
@@ -44,6 +44,11 @@ tasks.buildScripts = function buildScripts(recompile) {
 	if (recompile) {
 		bundler = watchify(bundler);
 	}
+
+	bundler
+		.on('error', function(err) { console.error('[Task Build Scripts Error]', err); })
+		.on('update', function() { rebundleScripts(bundler, bundleFiles); })
+		.transform(babelify); // JSX + ES6 compiling
   	rebundleScripts(bundler, bundleFiles);
 };
 
@@ -54,7 +59,7 @@ tasks.build = function build(recompile) {
 };
 
 // TODO: WTF Watchify, or something, causes app.js to be recompiled without removing the old one, leading to 15MB+ app.js bundle file ?!?!?!
-// TODO: Watchify keeps crapping o0t and stopping randomly. Is it due to errors? Memory usage issues? Windows (probably)? There are no console messages. S.O.S.
+// TODO: Watchify keeps crapping out and stopping randomly. Is it due to errors? Memory usage issues? Windows (probably)? There are no console messages. S.O.S.
 tasks.buildAndWatch = function buildAndWatch() {
 	var recompile = true;
 	tasks.build(recompile);
@@ -78,4 +83,4 @@ tasks.default = tasks.start;
 Object.keys(tasks).forEach(function(taskName) {
 	var taskFunction = tasks[taskName];
 	gulp.task(taskName, taskFunction);
-})
+});

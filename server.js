@@ -1,5 +1,8 @@
+/*jslint node: true */
+'use strict';
+
 var _ = require('LoDash');
-var Hapi = require('hapi');	
+var Hapi = require('hapi');
 
 function initializeRoutes(server) {
 	var routes = require('./routes.js');
