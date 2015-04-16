@@ -7,9 +7,6 @@ var rename = require('gulp-rename');
 var babelify = require('babelify');
 var browserify = require('browserify');
 var watchify = require('watchify');
-// var es6ify = require('es6ify');
-// var reactify = require('reactify');
-// es6ify.traceurOverrides = {experimental: true};
 
 function rebundleScripts(bundler, bundleFiles) {
 	bundler
@@ -58,9 +55,7 @@ tasks.build = function build(recompile) {
 	tasks.buildScripts(recompile);
 };
 
-// TODO: WTF Watchify, or something, causes app.js to be recompiled without removing the old one, leading to 15MB+ app.js bundle file ?!?!?!
-// TODO: Watchify keeps crapping out and stopping randomly. Is it due to errors? Memory usage issues? Windows (probably)? There are no console messages. S.O.S.
-tasks.buildAndWatch = function buildAndWatch() {
+tasks.buildDev = function buildDev() {
 	var recompile = true;
 	tasks.build(recompile);
 };
@@ -73,7 +68,7 @@ tasks.start = function start() {
 };
 
 tasks.dev = function dev() {
-	tasks.buildAndWatch();
+	tasks.buildDev();
 	tasks.start();
 };
 
