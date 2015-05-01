@@ -22,7 +22,7 @@ export default React.createClass({
             		<input type="text" value={this.state.name} onChange={this.handleChange} />
         		</div>
                 <br />
-                <span>Hello {this.state.name}.</span>
+                <span>Hello {this.state.name}.</span>w
             </div>
         );
     }

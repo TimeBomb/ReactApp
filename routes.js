@@ -1,22 +1,29 @@
 /*jslint node: true */
 'use strict';
 
-var Path = require('path');
-var FS = require('fs');
+import Path from 'path';
+import FS from 'fs';
+import React from 'react';
+import App from './assets/app/js/app.jsx';
+import Routes from './assets/app/js/routes.jsx';
+import Router from 'react-router';
+import Url from 'url';
+
 var routes = {};
 
-routes.home = {
+routes.app = {
     method: '*',
-    path: '/',
+    path: '/{param*}',
     handler: function(request, reply) {
-        var viewFile = Path.resolve('./views/main.html');
-        FS.readFile(viewFile, {
-            encoding: 'utf8'
-        }, function(error, data) {
-            if (error) {
-                console.error('[App Route Error] ', error);
-            }
-            reply(data);
+        var url = Url.parse(request.raw.req.url).pathname;
+        console.log(url);
+        var router = Router.create({
+            routes: Routes,
+            location: url,
+        });
+        router.run(function(Handler, state) {
+            var content = React.renderToString(<Handler path={url} />);
+            reply(content);
         });
     }
 };
@@ -31,12 +38,4 @@ routes._assets = {
     }
 };
 
-routes._404 = {
-	method: '*',
-	path: '/{param*}',
-	handler: function routeNotFoundHandler(request, reply) {
-		return reply('The page was not found').code(404);
-	}
-};
-
-module.exports = routes;
+export default routes;

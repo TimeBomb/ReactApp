@@ -4,10 +4,13 @@
   "description": "",
   "main": "run.js",
   "dependencies": {
+    "babel": "^5.1.13",
     "browserify": "^9.0.7",
     "hapi": "^8.4.0",
     "lodash": "^3.0.0",
-    "react": "~0.13.1"
+    "react": "~0.13.1",
+    "react-async": "^2.1.0",
+    "react-router": "^0.13.2"
   },
   "devDependencies": {
     "babelify": "^6.0.2",

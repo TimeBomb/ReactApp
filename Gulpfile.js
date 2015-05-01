@@ -1,6 +1,10 @@
 /*jslint node: true */
 'use strict';
 
+// All subsequent files required by node with the extensions .es6, .es, .jsx and .js will be transformed by Babel. The polyfill is also automatically required.
+// Necessary because we render our React app server side.
+require('babel/register');
+
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var rename = require('gulp-rename');
@@ -13,7 +17,7 @@ function rebundleScripts(bundler, bundleFiles) {
 		.bundle() // Bundle() before we pipe anything
 		.pipe(source(bundleFiles.srcFile)) // Take source app file
 		.pipe(rename(bundleFiles.destFile)) // Set the bundle name
-	  	.pipe(gulp.dest(bundleFiles.destDir)); // Output bundle file to destination folder
+		.pipe(gulp.dest(bundleFiles.destDir)); // Output bundle file to destination folder
 }
 
 // All tasks will be registered with gulp
@@ -46,7 +50,7 @@ tasks.buildScripts = function buildScripts(recompile) {
 		.on('error', function(err) { console.error('[Task Build Scripts Error]', err); })
 		.on('update', function() { rebundleScripts(bundler, bundleFiles); })
 		.transform(babelify); // JSX + ES6 compiling
-  	rebundleScripts(bundler, bundleFiles);
+	rebundleScripts(bundler, bundleFiles);
 };
 
 tasks.build = function build(recompile) {
@@ -79,3 +83,5 @@ Object.keys(tasks).forEach(function(taskName) {
 	var taskFunction = tasks[taskName];
 	gulp.task(taskName, taskFunction);
 });
+
+module.exports = tasks;

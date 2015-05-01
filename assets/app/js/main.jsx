@@ -2,12 +2,13 @@
 'use strict';
 
 import React from 'react';
-import HelloWorld from '../../../components/helloWorld.jsx';
-import HelloName from '../../../components/helloName.jsx';
-import HelloPerson from '../../../components/helloPerson.jsx';
-import Lifecycle from '../../../components/lifecycle.jsx';
+import Router from 'react-router';
+import Routes from './routes.jsx';
 
-(function() {
-	var mountNode = document.getElementById('app');
-	React.render(<HelloWorld />, mountNode);
-})();
+document.addEventListener('DOMContentLoaded', function() {
+	var mountNode = document;
+	Router.run(Routes, Router.HistoryLocation, function(Handler, state) {
+		React.render(<Handler />, mountNode);
+	});
+	console.log('clientside routing initialized');
+});

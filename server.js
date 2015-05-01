@@ -1,8 +1,8 @@
 /*jslint node: true */
 'use strict';
 
-var _ = require('LoDash');
-var Hapi = require('hapi');
+import _ from 'LoDash';
+import Hapi from 'hapi';
 
 function initializeRoutes(server) {
 	var routes = require('./routes.js');
@@ -20,7 +20,7 @@ function initializeServerConnection(server, options) {
 function FrontendServer(options) {
 	var server = new Hapi.Server();
 	var api = {};
-	
+
 	initializeServerConnection(server, options);
 	initializeRoutes(server);
 
@@ -32,4 +32,4 @@ function FrontendServer(options) {
 	return api;
 }
 
-module.exports = FrontendServer;
+export default FrontendServer;
