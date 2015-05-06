@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../../../components/nav.jsx';
+import Nav from '../Nav/nav.jsx';
 import Router from 'react-router';
 import { RouteHandler } from 'react-router';
 
@@ -10,7 +10,7 @@ export default React.createClass({
 				<head>
 					<meta charSet="utf-8" />
 					<title>React Full Stack Demo</title>
-					<script src="assets/bundle/app.js"></script>
+					<script src="assets/js/app.js"></script>
 				</head>
 				<body>
 					<Nav />

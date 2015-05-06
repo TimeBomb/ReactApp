@@ -1,13 +1,10 @@
-/*jslint node: true */
-'use strict';
-
 import Path from 'path';
 import FS from 'fs';
-import React from 'react';
-import App from './assets/app/js/app.jsx';
-import Routes from './assets/app/js/routes.jsx';
-import Router from 'react-router';
 import Url from 'url';
+import React from 'react';
+import Router from 'react-router';
+import App from './components/Core/app.jsx';
+import Routes from './components/Core/routes.jsx';
 
 var routes = {};
 
@@ -28,12 +25,26 @@ routes.app = {
     }
 };
 
-routes._assets = {
+routes.assets = {
     method: 'GET',
     path: '/assets/{param*}',
     handler: {
         directory: {
-            path: './assets'
+            path: './dist'
+        }
+    }
+};
+
+routes.favicon = {
+    method: 'GET',
+    path: '/favicon.ico',
+    handler: {
+        file: './dist/img/favicon.ico'
+    },
+    config: {
+        cache: {
+            expiresIn: 86400000,
+            privacy: 'public'
         }
     }
 };

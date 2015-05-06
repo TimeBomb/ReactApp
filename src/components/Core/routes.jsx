@@ -6,10 +6,10 @@ import {
 } from 'react-router';
 
 import App from './app.jsx';
-import HelloWorld from '../../../components/helloWorld.jsx';
-import HelloName from '../../../components/helloName.jsx';
-import HelloPerson from '../../../components/helloPerson.jsx';
-import Lifecycle from '../../../components/lifecycle.jsx';
+import HelloWorld from '../HelloWorld/helloWorld.jsx';
+import HelloName from '../HelloName/helloName.jsx';
+import HelloPerson from '../HelloPerson/helloPerson.jsx';
+import Lifecycle from '../Lifecycle/lifecycle.jsx';
 
 export default (
 	<Route handler={App}>

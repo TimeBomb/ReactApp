@@ -1,11 +1,8 @@
-/*jslint node: true */
-'use strict';
-
 import _ from 'LoDash';
 import Hapi from 'hapi';
 
 function initializeRoutes(server) {
-	var routes = require('./routes.js');
+	var routes = require('./routes.jsx');
 	_.forEach(routes, function(routeObject) {
 		server.route(routeObject);
 	});

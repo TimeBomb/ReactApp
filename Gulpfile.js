@@ -26,8 +26,8 @@ var tasks = {};
 // TODO: When recompile is false, this should be exiting when it finishes building. Why isn't it?
 tasks.buildScripts = function buildScripts(recompile) {
 	var bundleFiles = {
-		srcFile: './assets/app/js/main.jsx',
-		destDir:'./assets/bundle',
+		srcFile: './src/components/Core/main.jsx',
+		destDir:'./dist/js',
 		destFile: 'app.js'
 	};
 
@@ -65,7 +65,7 @@ tasks.buildDev = function buildDev() {
 };
 
 tasks.start = function start() {
-	var server = require('./server.js')({
+	var server = require('./src/server.js')({
 		port: 9001
 	});
 	server.start();
