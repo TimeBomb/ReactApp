@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # Bundles - build with Gulp
-./assets/bundle/*
+dist/

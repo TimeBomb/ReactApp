@@ -1,9 +1,15 @@
 import React from 'react';
+import ReactStylesheet from 'react-stylesheet';
 import Nav from '../Nav/nav.jsx';
-import Router from 'react-router';
 import { RouteHandler } from 'react-router';
 
 export default React.createClass({
+	mixins: [ReactStylesheet],
+
+	stylesheets: [
+		'assets/css/test.bundle.css'
+	],
+
 	render: function() {
 		return (
 			<html>
